@@ -14,7 +14,7 @@ var Doctor = require("./models/doctor");
 
 var promise = mongoose.connect('mongodb://akber:123abc@ds035965.mlab.com:35965/sugpat', {
   useMongoClient: true,
-  
+
 });
 
 app.set("view engine", "ejs");
@@ -26,5 +26,5 @@ var indexRoutes = require("./routes/index");
 app.use(indexRoutes);
 
 app.listen(3000, function(){
-    console.log("Visit Hyderabad Server has Started !!");
+    console.log("sugpat Server has Started on port 3000 !!");
 });
