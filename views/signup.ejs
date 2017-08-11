@@ -1,10 +1,13 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	   
 
-        <meta charset="utf-8">
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sugpat</title>
@@ -16,6 +19,39 @@
     <link href="assets/css/core.css" rel="stylesheet" type="text/css">
     <link href="assets/css/components.css" rel="stylesheet" type="text/css">
     <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
+
+
+    <style type="text/css">
+    
+    body{
+        background: url("https://www.glutenfreegigi.com/wp-content/uploads/2012/05/Celiac-Disease-and-Type-1-Diabetes.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    html, body {
+    min-height: 100%;
+    }
+
+    h4{
+        margin-bottom: 2px;
+    }
+    
+    .jumbotron{
+        background-color: rgba(0,0,0,0.1);
+    }
+
+    .jumbotron p{ 
+        font-size: 16px;
+    }
+    .logo{
+        width: 200px;
+        height: 150px;
+    }
+
+</style>
+
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
@@ -39,34 +75,14 @@
 
     <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
     <!-- /theme JS files -->
-    
-<style type="text/css">
-	
-	body{
-		background: url("http://www.tropicanaslim.com/wp-content/uploads/2015/08/cara-mengobati-diabetes.jpg");
-		background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100%;
-        width: 100%;
-	}
-	
-	.jumbotron{
-		background-color: rgba(0,0,0,0.1);
-	}
 
-    input{
-        margin-top: 8px;
-        margin-bottom: 8px;
-    }
 
-</style>
 </head>
 <body>
 
 <div class="navbar navbar-inverse bg-indigo">
         <div class="navbar-header">
-            <a class="navbar-brand"  href="#" style = "padding: 0px;"><img  src="assets/my_assets/logo.png" alt="" style = "width:60px; height: 50px;"></a>
+            <a class="navbar-brand"  href="#" style = "padding: 0px;"><img src="assets/my_assets/logo.png" alt="" style = "width:60px; height: 50px;"></a>
             <a class="navbar-brand" href="/profile" style = "padding-left: 0px;">Sugpat</a>
 
             <ul class="nav navbar-nav visible-xs-block">
@@ -87,40 +103,47 @@
         </div>
 </div>
 
-<div class = "container">
-      <% if (error && error.length > 0){ %>
-        <div class = "alert alert-danger">
-          <%= error %>
-        </div>
-      <% } %>
-      <% if (success && success.length > 0){ %>      
-        <div class = "alert alert-success">
-          <%= success %>
-        </div>
-      <% } %>
-    </div>
-
 <div class = "container " style = "margin-top: 35px;">
     <div class = "row">
          <div  style = "width: 30%; margin: 0 auto">
-            <div class = "jumbotron jspecial" style = "border-radius: 30px;">
-                <h1 class = "spH1" style = "font-size: 30px; color: #2c3e50;"></h1>    
-                <form action = "/login" method = "post">
-                    <h2 align = "center" style = "font-face: comic sans ms;">Sugpat</h2>    
+            <div class = "jumbotron jspecial" style = "border-radius: 20px;">
+                <div class = "centered">
+                    <img align = "middle" class = "logo" src="assets/my_assets/logo.png">
+                </div>
+                <form action = "/signup" method = "post"> 
+                    <h4 align = "center"><strong>Create Account</strong></h4>   
                      <div class = "form-group">
-                     	<h3 align = "center">Username</h3>
-                        <input class = "form-control" type="text" name = "username" placeholder = "Username">
+                     	<h4>Username</h4>
+                        <input class = "form-control" type="text" name = "username" >
                      </div>
+                     <div class = "form-group">
+                        <h4>Name</h4>
+                        <input class = "form-control" type="text" name = "name" >
+                     </div>
+                     <div class = "form-group">
+                        <h4>CNIC No</h4>
+                        <input class = "form-control" type="text" name = "cnic" >
+                     </div>
+                     
                         <div class = "form-group">
-                     	    <h3 align = "center">Password</h3>
-                            <input class = "form-control" type="password" name = "password" placeholder = "Password">
+                     	    <h4>Password</h4>
+                            <input class = "form-control" type="password" name = "password" pattern=".{6,}"  title="Six or more characters">
                         </div>
                      <div class = "form-group">
-                        <input class = "btn btn-lg btn-primary btn-block" type = "submit" value  = "Sign In"> 
+                        <h4>Mobile No</h4>
+                        <input class = "form-control" type="text" name = "num" pattern=".{11,}"  title="11 Numbers minimum" >
                      </div>
-                     <h3 align = "center">Or</h3>
                      <div class = "form-group">
-                        <a class = "btn btn-lg btn-primary btn-block" href = "/signup">Create Account</a> 
+                        <h4>Age</h4>
+                        <input class = "form-control" type="number" name = "age" pattern=".{2,}">
+                     </div> 
+
+                     <div class = "form-group">
+                        <input class = "btn btn-lg btn-primary btn-block" type = "submit" value  = "Create Account"> 
+                     </div>
+                     
+                     <div>
+                        <p class = "terms">By clicking "Create Account", you agree to our <a href="#">Terms & Conditions </a>and <a href="#">Privacy Policy</a></p>
                      </div>
                 </form>
             </div>    

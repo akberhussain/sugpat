@@ -8,8 +8,9 @@ var doctorSchema = new mongoose.Schema({
     cnic: String,
     email:String,
     password: String,
-    num: Number,
+    num: String,
     age: Number,
+    qualification: String,
     specialization: String,
     dDescription: String,
     gender: String
