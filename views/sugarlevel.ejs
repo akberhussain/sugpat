@@ -1,0 +1,47 @@
+<% include ./partials/header %>
+
+
+                    <!-- Main charts -->
+                    <div class="row">
+                        <div class="col-lg-10">
+
+                            <!-- Traffic sources -->
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h1 class="panel-title">DIABETES LEVELS</h1>
+                                    <div class="heading-elements">
+                                        <span><i class="icon-bell2"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="container-fluid">
+                                    <!-- <div class="row">
+                                        
+
+                                        <div class="col-lg-12"> -->
+                                            <form action = "/sugarlevel" method = "post">
+                                            	<div class = "form-group">
+							                     <h3 >Select Date</h3>
+							                     	<input type = "date" name = "date1">
+							                    </div>
+							                    <div class= "form-group">
+							                    	<input class = "form-control" type = "number" name = "num">
+							                    </div>
+							                     <div class= "form-group">
+							                    	<input class = "form-control" type = "submit">
+							                    </div>
+                                            </form>        
+<!--                
+                                        </div>  
+                                    </div> -->
+                                </div>
+
+                                <div class="position-relative" id=""></div>
+                            </div>
+                            <!-- /traffic sources -->
+
+                        </div>
+
+                    </div>   
+
+<% include ./partials/footer %>

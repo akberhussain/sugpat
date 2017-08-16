@@ -1,3 +1,4 @@
+console.log("asa");
 var express = require("express");
 var app = express();
 
@@ -6,6 +7,7 @@ var mongoose = require("mongoose");
 var flash = require("connect-flash");
 var passport = require("passport");
 var localStrategy = require("passport-local");
+// var localStrategy1 = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var methodOverride = require("method-override");
 var Doctor = require("./models/doctor");
@@ -36,17 +38,47 @@ app.use(require("express-session")({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 passport.use(new localStrategy(Patient.authenticate()));
 passport.serializeUser(Patient.serializeUser());
 passport.deserializeUser(Patient.deserializeUser());
+// passport.use(new localStrategy1(Doctor.authenticate()));
+// passport.serializeUser(Doctor.serializeUser());
+// passport.deserializeUser(Doctor.deserializeUser());
+
+
+// if(Patient.authenticate()=="Unauthorized"){
+//   console.log("unauthorized");
+//   passport.use(new localStrategy(Doctor.authenticate()));
+//   passport.serializeUser(Doctor.serializeUser());
+//   passport.deserializeUser(Doctor.deserializeUser());
+
+// }
+
+
+
+
+
+
+// passport.use(new localStrategy(
+//   function(username, password, role, done) {
+//     Patient.findOne({ username: username }, function (err, user) {
+//       if (err) { return done(err); }
+//       if (!user) { return done(null, false); }
+//       // if (!user.verifyPassword(password)) { return done(null, false); }
+//       return done(null, user);
+//     });
+//   }
+// ));
+
+// passport.use(new localStrategy(Patient.authenticate()));
+// passport.serializeUser(Patient.serializeUser());
+// passport.deserializeUser(Patient.deserializeUser());
 
 // app.use(passport.initialize());
 // app.use(passport.session());
-passport.use(new localStrategy(Doctor.authenticate()));
-passport.serializeUser(Doctor.serializeUser());
-passport.deserializeUser(Doctor.deserializeUser());
+// passport.use(new localStrategy(Doctor.authenticate()));
+// passport.serializeUser(Doctor.serializeUser());
+// passport.deserializeUser(Doctor.deserializeUser());
 
 
 
