@@ -26,7 +26,6 @@
                                                         <th><h5>Date</h5></th>
                                                         <th><h5>Time</h5></th>
                                                         
-                                                        <th><h5>React</h5></th>
                                                     </tr>
                                                      <% appointments.forEach(function(appointment){ %>
                                                     <% if(currentUser && appointment.doctor2.id.equals(currentUser._id)){ %>
@@ -34,13 +33,13 @@
                                                     <tr>
                                                         <td><h4><a href="/detail<%= appointment.patient2.id %>"><%= appointment.patient2.name2 %></a></h4></td>
                                                         <td><h5><%= appointment.appointmentdate %></h5></td>
-                                                        <td><strong style = " font-size: 18px;"><%= appointment.appointmenttime1 %> - <%= appointment.appointmenttime2 %></strong></td>
+                                                        <td><strong style = " font-size: 18px;"><%= appointment.appointmenttime1 %> - <%= appointment.appointmenttime2 %></strong> 
  
-                                                        <td>
-                                                            <form action = "/removeappointment/<%= appointment.id %>?_method=delete" method = "post">
+                                                           <form action = "/removeappointment/<%= appointment.id %>?_method=delete" method = "post">
                                                                 <input type = "submit" class = "btn btn-danger btn-xs" value = "Cancel" >
                                                             </form>
-                                                        </td>
+                                                        
+                                                    </td>
                                                     </tr>
                                                         
                                                         <% } %>

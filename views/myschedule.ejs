@@ -22,8 +22,7 @@
                                                 <thead class = "thead-inverse">
                                                     <tr>
                                                         <th><h5>Date</h5></th>
-                                                        <th><h5>From</h5></th>
-                                                        <th><h5>Till</h5></th>
+                                                        <th><h5>Time</h5></th>
                                                         <th><h5>React</h5></th>
                                                     </tr>
                                                      <% schedule.forEach(function(schd){ %>
@@ -31,8 +30,7 @@
                                                     
                                                     <tr>
                                                         <td><h5><%= schd.date %></h5></td>
-                                                        <td><strong style = " font-size: 18px;"><%= schd.time1 %></strong></td>
-                                                        <td><strong style = " font-size: 18px;"><%= schd.time2 %></strong></td>
+                                                        <td><strong style = " font-size: 18px;"><%= schd.time1 %> - <%= schd.time2 %></strong></td>
                                                         <td>
                                                             <form action = "/removeavailablity/<%= schd.id %>?_method=delete" method = "post">
                                                                 <input type = "submit" class = "btn btn-danger btn-sm" value = "Delete Schedule" >
