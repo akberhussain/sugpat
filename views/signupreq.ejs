@@ -1,0 +1,59 @@
+<% include ./partials/header %>
+
+	<div class="row">
+                        <div class="col-md-12">
+
+                            <!-- Traffic sources -->
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h1 class="panel-title">Requests for Patient Accounts</h1>
+                                    <div class="heading-elements">
+                                        <span><i class="icon-bell2"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        
+
+                                        <div class="col-md-12">
+ 											 <table class = "table table-striped table-bordered table-hover table-responsive box-shadow-table">
+				                            <thead class = "thead-inverse">                            	
+					                                <tr>
+									                    <th><h4><strong>Email</strong></h4></th>
+									                    <th><h4><strong>React</strong></h4></th>
+
+
+									                </tr>
+                                               	</thead>
+                                               	<tbody>
+                                               		<% foundreq.forEach(function(request){ %>
+                                               			<tr>
+                                                      <td><h5><a href="/req<%= request.id %>" ><%= request.username %></a></h5></td>
+                                                      <td>
+                                                        <form style = "display: inline;" action = "/signup<%= request.id %>" method = "post">
+                                                          <input type = "submit" value = "Add" class = "btn btn-xs btn-success">
+                                                        </form>
+                                                        <form style = "display: inline;" action = "/deleteuser<%= request.id %>?_method=delete" method = "post">
+                                                          <input type = "submit" value = "Decline" class = "btn btn-xs btn-danger">
+                                                        </form>
+
+                                                      </td>  
+
+
+                                               			</tr>
+                                                	<% }); %>
+                                               	</tbody>		
+                                             </table> 	
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="position-relative" id=""></div>
+                            </div>
+                            <!-- /traffic sources -->
+                        </div>
+                    </div>
+
+<% include ./partials/footer %>

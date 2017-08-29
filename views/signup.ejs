@@ -85,7 +85,7 @@
 				<div class="content">
 
 					<!-- Registration form -->
-					<form action="/signup" method = "post">
+					<form action="/signuprequest" method = "post">
 						<div class="row">
 							<div class="col-lg-6 col-lg-offset-3">
 								<div class="panel registration-form">
@@ -97,7 +97,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group has-feedback">
-											<input type="text" class="form-control" placeholder="Username" name = "username">
+											<input type="email" class="form-control" placeholder="Username" name = "username" required>
 											<div class="form-control-feedback">
 												<!-- <i class="icon-user-plus text-muted"></i> -->
 												<span class = "fa fa-envelope"></span>
@@ -109,7 +109,7 @@
 										<div class="row"> -->
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input type="text" class="form-control" placeholder="Name" name = "name">
+													<input type="text" class="form-control" placeholder="Name" name = "name" required>
 													<div class="form-control-feedback">
 														<!-- <i class="icon-user-check text-muted"></i> -->
 															<i class = "fa fa-user "></i>
@@ -123,7 +123,7 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input type="password" class="form-control" placeholder="Create password" name = "password" pattern=".{6,}"  title="Six or more characters">
+													<input type="password" class="form-control" placeholder="Create password" name = "password" pattern=".{6,}"  title="Six or more characters" required>
 													<div class="form-control-feedback">
 														<!-- <i class="icon-user-lock text-muted"></i> -->
 														<span class = "fa fa-unlock-alt "></span>
@@ -133,7 +133,7 @@
 
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input class="form-control" placeholder="Contact Number" type="text" name = "num" pattern=".{11,}"  title="11 Numbers minimum">
+													<input class="form-control" placeholder="Contact Number" type="text" name = "num" pattern=".{11,}"  title="11 Numbers minimum" required>
 													<div class="form-control-feedback">
 														<!-- <i class="icon-user-telephone2 text-muted"></i> -->
 														<span class="icon-phone"></span>
@@ -145,7 +145,7 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input class="form-control" placeholder="Age" type="number" name = "age">
+													<input class="form-control" placeholder="Age" type="number" name = "age" required>
 													<div class="form-control-feedback">
 														<!-- <i class="icon-mention text-muted"></i> -->
 														<i class="fa fa-list" aria-hidden="true"></i>
@@ -156,7 +156,7 @@
 
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input type="text" class="form-control" placeholder="CNIC" name = "cnic">
+													<input type="text" class="form-control" placeholder="CNIC" name = "cnic" required>
 													<div class="form-control-feedback">
 														<!-- <i class="icon-mention text-muted"></i> -->
 														<i class="fa fa-id-card-o" aria-hidden="true"></i>
@@ -201,7 +201,7 @@
 										<div class="row">
 											<div class="col-md-12">
 												<div class="form-group has-feedback">
-													<input type="text" class="form-control" placeholder="Address" name = "address">
+													<input type="text" class="form-control" placeholder="Address" name = "address" required>
 													<div class="form-control-feedback">
 														<!-- <i class="icon-user-plus text-muted"></i> -->
 														<i class="fa fa-globe" aria-hidden="true"></i>

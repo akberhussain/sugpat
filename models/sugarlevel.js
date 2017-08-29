@@ -1,21 +1,20 @@
 var mongoose = require ("mongoose");
 
-var passportLocalMongoose = require("passport-local-mongoose");
 
 var sugarLevelSchema = new mongoose.Schema({
     
     date1: String,
     sugarLevel: Number,
-    user:{
+    author1:{
         id:{
           type: mongoose.Schema.Types.ObjectId,
           ref : "Patient"
         },
-        username: String
+        username1: String
     }
 });
 
-sugarLevelSchema.plugin(passportLocalMongoose);
+
 
 module.exports = mongoose.model("SugarLevel", sugarLevelSchema);
 

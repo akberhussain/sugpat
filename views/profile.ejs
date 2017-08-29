@@ -1,9 +1,9 @@
-
 <% include ./partials/header %>
 
                     <!-- Main charts -->
                     <div class="row">
-                        <div class="col-lg-10">
+                       <% if(currentUser&&(currentUser.id != admin)){ %>
+                              <div class="col-md-12">
 
                             <!-- Traffic sources -->
                             <div class="panel panel-flat">
@@ -46,6 +46,123 @@
                             </div>
                             <!-- /traffic sources -->
                         </div>
+                        
+                         <% } %>
+
+                        <% if(currentUser&&(currentUser.id== admin)){ %>
+
+                        <div class="col-lg-6">
+
+                            <!-- Traffic sources -->
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h1 class="panel-title">Patients</h1>
+                                    <div class="heading-elements">
+                                    
+                                    </div>
+                                </div>
+
+                                <div class="container-fluid">
+                                    <div class="row">                                        
+                                    <div class="col-lg-4">
+                                       <ul class="list-inline text-center">
+                                            <li>
+                                                <a href="#" class="btn border-teal text-teal btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i class="icon-plus3"></i></a>
+                                            </li>
+                                                <li class="text-left">
+                                            <div class="text-semibold">Patients</div>
+                                            <div class="text-muted"><%= pat %></div>
+                                            </li>
+                                        </ul>
+                                        <div class="col-lg-10 col-lg-offset-1">
+                                            <div class="content-group" id="new-visitors"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="position-relative" id=""></div>
+                            </div>
+                            <!-- /traffic sources -->
+                        </div>
+                    </div>
+
+                        <div class="col-lg-6">
+
+                            <!-- Traffic sources -->
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h1 class="panel-title">Doctors</h1>
+                                    <div class="heading-elements">
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="container-fluid">
+                                    <div class="row">                                       
+                                    <div class="col-lg-4">
+                                        <ul class="list-inline text-center">
+                                                <li>
+                                                    <a href="/register" class="btn border-teal text-teal btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i class="icon-plus3"></i></a>
+                                                </li>
+                                                <li class="text-left">
+                                                    <div class="text-semibold">Doctors</div>
+                                                    <div class="text-muted"><%= count %></div>
+                                                </li>
+                                            </ul>
+
+                                            <div class="col-lg-10 col-lg-offset-1">
+                                                <div class="content-group" id="new-visitors"></div>
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <div class="position-relative" id=""></div>
+                            </div>
+                            <!-- /traffic sources -->
+                        </div>  
+                        </div>              
+
+                        <% } %>
+
                     </div>   
+
+                    <% if(currentUser&&(currentUser.id== admin)){ %>
+                    
+                    <div class = "row">
+                        <div class="col-lg-6">
+
+                            <!-- Traffic sources -->
+                            <div class="panel panel-flat " style = "padding-bottom: 20px;">
+                                <div class="panel-heading">
+                                    <h1 class="panel-title">Recent Activities</h1>
+                                    <div class="heading-elements">
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="container-fluid">
+                                    <div class="row">                                       
+                                    <div class="col-lg-12">
+    
+                                    <div style = "padding-bottom: 10px;">
+                                        <i class = "icon-plus3"></i>
+                                        <span class="text-semibold">You have <a href="/requests" ><%= reqCount %></a> Appointment Requests</span>
+    
+                                    </div>
+                                    <div>
+                                        <i class = "icon-mention"></i>
+                                        <span class="text-semibold">You have <a href="/signuprequests" ><%= signupreq %></a> Profile Requests</span>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="position-relative" id=""></div>
+                            </div>
+                            <!-- /traffic sources -->
+                        </div>  
+                        </div>
+                    </div>
+                    
+                    <% } %>
 
 <% include ./partials/footer %>               

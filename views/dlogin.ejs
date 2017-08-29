@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sugpat</title>
+
+    <style type="text/css">
+    
+        body{
+        background-image: url("assets/images/background/1a.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    /*font-family: comic sans MS;*/
+    }
+  html{
+    height: 100%;
+  }
+
+  div .panel{
+        background-color: rgba(250,250,250,.8);
+      }
+        
+    </style>
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/core.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/components.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/colors.css" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
+
+	<script type="text/javascript" src="assets/js/core/app.js"></script>
+	<script type="text/javascript" src="assets/js/pages/login.js"></script>
+
+	<script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body class="login-container" id = "sbody">
+
+    <div class = "container">
+      <% if (error && error.length > 0){ %>
+        <div class = "alert alert-danger">
+          <%= error %>
+        </div>
+      <% } %>
+      <% if (success && success.length > 0){ %>      
+        <div class = "alert alert-success">
+          <%= success %>
+        </div>
+      <% } %>
+    </div>
+
+
+	<!-- Page container -->
+	<div class="page-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Content area -->
+				<div class="content pb-20">
+
+					<!-- Advanced login -->
+					<form action="/doctorLogin" method = "post">
+						<div class="panel panel-body login-form">
+							<div class="text-center">
+                                <img height="120" width="150" src="assets/images/logo/logo.png">
+								<h5 class="content-group-lg">Login to your account <small class="display-block">Enter your credentials as Doctor</small></h5>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="email" class="form-control" placeholder="Username" name = "username">
+								<div class="form-control-feedback">
+									<i class="icon-user text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="password" class="form-control" placeholder="Password" name = "password">
+								<div class="form-control-feedback">
+									<i class="icon-lock2 text-muted"></i>
+								</div>
+							</div>
+
+							
+
+							<div class="form-group">
+								<button type="submit" class="btn bg-blue-400 btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+							</div>
+
+
+							<a href="/signup" class="btn btn-default  bg-blue-400 btn-block content-group">Sign up</a>
+							<span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+						</div>
+					</form>
+					<!-- /advanced login -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+<script type="text/javascript">
+    var arr= [
+
+        "assets/images/background/2a.jpg",
+        "assets/images/background/3a.jpg",
+        "assets/images/background/4a.jpg",
+        "assets/images/background/5a.jpg",
+        "assets/images/background/6a.jpg",
+        "assets/images/background/7a.jpg",
+        "assets/images/background/8a.jpg",
+        "assets/images/background/1a.jpg",
+        
+
+    ];
+        var i = 0;
+    function screensavers(){
+        if(i==4){
+        i=0;
+    }
+    
+    document.getElementById("sbody").style.backgroundImage = "url('"+arr[i]+"')";
+    i++;
+
+    }
+    
+    // screensaver();
+    setInterval(screensavers, 2000);
+
+</script>
+
+</body>
+</html>

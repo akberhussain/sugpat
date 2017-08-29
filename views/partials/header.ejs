@@ -13,6 +13,8 @@
     <link href="assets/css/core.css" rel="stylesheet" type="text/css">
     <link href="assets/css/components.css" rel="stylesheet" type="text/css">
     <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/button.min.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
@@ -34,6 +36,8 @@
     <script type="text/javascript" src="assets/js/core/app.js"></script>
     <script type="text/javascript" src="assets/js/pages/dashboard.js"></script>
 
+    <script type="text/javascript" src="assets/js/pages/general_widgets_stats.js"></script>
+
     <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
     <!-- /theme JS files -->
 
@@ -53,20 +57,68 @@
                 <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
                 <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
             </ul>
+        <% if(currentUser&&(currentUser.id== admin )){ %>
+            <ul class="nav navbar-nav">
+                <!-- <li><a href="/requests">Requests <span class = "icon-bell2"></span></a></li> -->
+
+
+
+
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Requests
+                            <i class="icon-bell2"></i>
+                           <!--  <span class="visible-xs-inline-block position-right">Requests</span>
+                            <span class="status-mark border-orange-400"></span> -->
+                        </a>
+
+                        <div class="dropdown-menu dropdown-content">
+                            <div class="dropdown-content-heading">
+                                Requests
+                                <!-- <ul class="icons-list">
+                                    <li><a href="#"><i class="icon-menu7"></i></a></li>
+                                </ul> -->
+                            </div>
+
+                            <ul class="media-list dropdown-content-body width-350">
+                                <li class="media">
+                                    <div class="media-left">
+                                        <a href="/signuprequests" class="btn bg-success-400 btn-rounded btn-icon btn-xs"><i class="icon-mention"></i></a>
+                                    </div>
+
+                                    <div class="media-body">
+                                        <a href="/signuprequests">Profile Requests</a>
+                                        <div class="media-annotation"></div>
+                                    </div>
+                                </li>
+
+                            
+                                <li class="media">
+                                    <div class="media-left">
+                                        <a href="/requests" class="btn bg-blue btn-rounded btn-icon btn-xs"><i class="icon-plus3"></i></a>
+                                    </div>
+                                    
+                                    <div class="media-body">
+                                        <a href="/requests">Appointment Requests</a>
+                                        <div class="media-annotation"></div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+            </ul>
+         <% } %>
         </div>
 
         <div class="navbar-collapse collapse" id="navbar-mobile">
             <ul class="nav navbar-nav">
+                <!-- <li><a href="#">Requests</a></li> -->
                 <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
             </ul>
 
             <div class="nav navbar-nav navbar-right">
                 <% if(currentUser){ %>
-
-                <li><a href="#">Signed in as <%= currentUser.name %></a></li>
-                <li><a href="/logout">Logout</a></li>
-                    
-
+                    <li><a href="#">Signed in as <%= currentUser.name %></a></li>
             <% } %>
                 
             </div>
@@ -113,8 +165,9 @@
                         
                         <div class="navigation-wrapper collapse" id="user-nav">
                             <ul class="navigation">
-                                <li><a href="#"><i class="icon-user-plus"></i> <span>My profile</span></a></li>        
-                                <li><a href="#"><i class="icon-comment-discussion"></i> <span><span class="badge bg-teal-400 pull-right">58</span> Messages</span></a></li>
+                                <li><a href="/aboutme"><i class="icon-user-plus"></i> <span>My profile</span></a></li>        
+                                <li class="divider"></li>
+                                <li><a href="/myaccount<%= currentUser._id %>"><i class="icon-user-plus"></i> <span>Account Settings</span></a></li> 
                                 <li class="divider"></li>
                                 <li><a href="/logout"><i class="icon-switch2"></i> <span>Logout</span></a></li>
                             </ul>
@@ -134,27 +187,36 @@
                                 <!-- Main -->
                                 <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
 
-                                    <% if(currentUser&&(currentUser.id=="59942ea4e179ce1a3843c1ff")){ %>
+                                    <% if(currentUser&&(currentUser.id== admin )){ %>
             
+                                        <li><a href="/profile"><i class="icon-list-unordered"></i><span>Home</span></a></li>
                                         <li><a href="/patients"><i class="icon-list-unordered"></i><span>Patient List</span></a></li>
                                         <li><a href="/doctors"><i class="icon-list-unordered"></i><span>Doctors List</span></a></li>
                                         <li><a href="/register"><i class="icon-list-unordered"></i><span>Add Doctor</span></a></li>
                                         <!-- <li><a href="/logout"><i class="icon-list-unordered"></i><span>Sign Out</span></a></li> -->
                                     <% } %>
                                     
-                                <li class="active"><a href="/profile"><i class="icon-home4"></i> <span>Basic Info</span></a></li>
+                                 <% if(currentUser&&(currentUser.id != admin )){ %>
+
+                                <li><a href="/profile"><i class="icon-home4"></i> <span>Basic Info</span></a></li>
                                 <li>
-                                    <a href="/sugarlevel"><i class="icon-copy"></i> <span>Dialbetes Levels</span></a>
+                                    <a href="/sugarlevel %>"><i class="icon-copy"></i> <span>Dialbetes Levels</span></a>
                                 </li>
                                 <li>
                                     <a href="/sugarinfo"><i class="icon-droplet2"></i> <span>Diabetes Info</span></a>
                                 </li>
                                 <li>
-                                    <a href="/sugarstatus"><i class="icon-stack"></i> <span>Diabetes Status</span></a>
+                                    <a href="/sugarstatus<%= currentUser.id %>"><i class="icon-stack"></i> <span>Diabetes Status</span></a>
+                                </li>   
+                                <li>
+                                    <a href="/appointments"><i class="icon-stack"></i> <span>See My Appointments</span></a>
                                 </li>
                                 <li>
-                                    <a href="selectdoctor"><i class="icon-stack2"></i> <span>Select Doctor</span></a>
+                                    <a href="/selectdoctor"><i class="icon-stack2"></i> <span>Select Doctor</span></a>
                                 </li>
+
+                                   <% } %>
+
                                 <li><a href="/logout"><i class="icon-list-unordered"></i> <span>Logout</span></a></li>
                           
                                 <!-- /main -->

@@ -1,14 +1,86 @@
 <% include ./partials/header %>
-		
-		 <div class="row">
-                        <div class="col-lg-10">
 
-                            <!-- Traffic sources -->
+          <% notify = 0 %>
+          <% add = 0 %>
+          <% count = 0 %>
+          <% avg = 0 %>
+
+          <% sugarlevel.forEach(function(sugarl){ %>
+          <% if(currentUser && sugarl.author1.id.equals(currentUser._id)){ %>
+
+          <% add += sugarl.sugarLevel %>
+          <% count++ %>
+          <% avg = add/count %>
+
+          <% if(avg>=110){ %>
+
+                <% notify = 1 %>
+
+          <% } %>                                                  
+
+           <% if(avg<80){ %>
+
+                <% notify = 1 %>
+
+          <% } %>                                                  
+
+          <% if(avg<110&&avg>80){ %>
+
+                <% notify = 0 %>
+
+          <% } %>   
+
+      <% } %>
+    <% }); %>
+    
+		 <div class="row">
+                        <div class="col-md-12">
+                          <% if(avg>=110){ %>
+                                   <div class="container">
+                        
+                                      <div class="span4" id = "sp4">
+                                        <div class="alert alert-danger" style = "width: 88%;">
+                                          <button type="button" class="close" data-dismiss="alert">×</button>
+                                                <strong>Alert!</strong> Consult Your Doctor And Take Insulin
+                                        </div>
+                                      </div>
+                                    
+                                    </div>
+                            <% } %>
+                             <% if(avg>80&&avg<110){ %>
+                                  
+                                    <div class="container">
+                        
+                                      <div class="span4" id = "sp4">
+                                        <div class="alert alert-success" style = "width: 88%;">
+                                          <button type="button" class="close" data-dismiss="alert">×</button>
+                                                <strong>Bravo</strong> Your Average Seems Fine You've Noting to Worry About
+                                        </div>
+                                      </div>
+                                    
+                                    </div>
+
+                                <% } %>
+
+                                <% if(avg<80){ %>
+                                
+                                    <div class="container">
+                        
+                                      <div class="span4" id = "sp4">
+                                        <div class="alert alert-danger" style = "width: 88%;">
+                                          <button type="button" class="close" data-dismiss="alert">×</button>
+                                                <strong>Alert</strong> Your Average Seems Below Average Please Consult Doctor
+                                        </div>
+                                      </div>
+                                    
+                                    </div>
+
+                                <% } %>
                             <div class="panel panel-flat">
                                 <div class="panel-heading">
                                     <h1 class="panel-title">Sugar Level</h1>
                                     <div class="heading-elements">
-                                        <span><i class="icon-bell2"></i></span>
+                                        <span><a href="#"><i class="icon-bell2" id = "myalert"><%= notify %></i></a></span>
                                     </div>
                                 </div>
 
@@ -20,24 +92,75 @@
                                             <table class = "table table-striped table-bordered table-hover table-responsive box-shadow-table">
 
                                                 <thead class = "thead-inverse">
-                                                	<% add = 0 %>
-                                                	<% count = 0 %>
-                                                	 <% sugarlevel.forEach(function(sugarl){ %>
-                                                	<% if(currentUser && sugarl.user.id.equals(currentUser._id)){ %>
                                                     
-                                                    <tr><th><h5><%= sugarl.date1 %></h5></th><td><strong style = " font-size: 18px;"><%= sugarl.sugarLevel %></strong></td></tr>
-                                                    <% add += sugarl.sugarLevel %>
-                                                    <% count++ %>
+                                                    <tr>
+                                                        <th><h5><strong>Date</strong></h5></th>
+                                                        <th><h5><strong>Sugar Level</strong></h5></th>
+                                                        <th><h5><strong>Tip  Of The Day</strong></h5></th>
+                                                        <th><h5><strong>React</strong></h5></th>
+                                                    </tr>
+
+                                                 </thead>
+
+                                                 <tbody>    
+                                                    <% add = 0 %>
+                                                    <% count = 0 %>
                                                     
-                                                     	<% } %>
+                                                     <% sugarlevel.forEach(function(sugarl){ %>
+                                                    
+                                                    <% if(currentUser && sugarl.author1.id.equals(currentUser._id)){ %>
+
+                                                    <tr>
+                                                        
+                                                        <td><h5><%= sugarl.date1 %></h5></td>
+                                                        <td><strong style = " font-size: 18px;"><%= sugarl.sugarLevel %></strong></td>
+                                                         <% add += sugarl.sugarLevel %>
+                                                        <% count++ %>
+
+                                                        <% avg = add/count %>
+                                                        <td>
+                                                         <% if(sugarl.sugarLevel>=70&&sugarl.sugarLevel<80){ %>
+                                                             <strong style = " font-size: 14px;">Have juice Immediately</strong>
+                                                          <% } %>
+
+                                                         <% if(sugarl.sugarLevel>=80&&sugarl.sugarLevel<90){ %>
+                                                             <strong style = " font-size: 14px;">Have Fruits</strong>
+                                                          <% } %>
+
+                                                         <% if(sugarl.sugarLevel>=90&&sugarl.sugarLevel<110){ %>
+                                                             <strong style = " font-size: 14px;">Eat Candies</strong>
+                                                          <% } %>
+
+                                                         <% if(sugarl.sugarLevel>=140){ %>
+                                                             <strong style = " font-size: 14px;">Please Consult Your Doctor</strong>
+                                                          <% } %>
+
+                                                         <% if(sugarl.sugarLevel<70){ %>
+                                                             <strong style = " font-size: 14px;">Please Consult Your Doctor</strong>
+                                                          <% } %>
+
+                                                        </td>
+                                                        <td>
+                                                          <form action = "/deletesugarlevel<%= sugarl.id %>?_method=delete" method = "post" >
+                                                            <input type = "submit" value = "Delete Sugar Level" class = "btn btn-xs btn-danger">
+                                                          </form>
+                                                        </td>   
+                                                    </tr>
+                                                
+                                                    
+
+ 
+                                                        <% } %>
                                                      <% }); %>
 
-                                                    <tr><th><h5><strong>Average</strong></h5></th><td><strong style = " font-size: 18px;"><%= add/count %></strong></td></tr>
-
-                                                </thead>
-                                                <tbody>
-                                                    <tr></tr>
-                                                </tbody>    
+                                                <tr>
+                                                    <th><h5><strong>Average</strong></h5></th>
+                                                    <td><strong style = " font-size: 18px;"><%= add/count %></strong></td>
+                                                    <td><strong style = " font-size: 18px;"></strong></td>
+                                                </tr>
+                                                   
+                                                 
+                                                </tbody>
                                             </table>
 
                                         </div>
@@ -49,7 +172,54 @@
                             </div>
                             <!-- /traffic sources -->
                         </div>
-                    </div>   
+                    </div>
+
+
+<script type="text/javascript">
+
+            var icon = document.getElementById("myalert");
+            icon.addEventListener("click", function(){
+                document.getElementById("sp4").classList.toggle("span5");
+
+            var tip = document.getElementById("tip");
+            tip.addEventListener("click", function(){
+                document.getElementById()
+            })    
+
+            });
+
+</script>                       
 
 
 <% include ./partials/footer %>
+
+
+<!-- <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-bell2"></i>
+                            <span class="visible-xs-inline-block position-right">Activity</span>
+                            <span class="status-mark border-orange-400"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-content">
+                            <div class="dropdown-content-heading">
+                                Activity
+                                <ul class="icons-list">
+                                    <li><a href="#"><i class="icon-menu7"></i></a></li>
+                                </ul>
+                            </div>
+
+                            <ul class="media-list dropdown-content-body width-350">
+                                <li class="media">
+                                    <div class="media-left">
+                                        <a href="#" class="btn bg-success-400 btn-rounded btn-icon btn-xs"><i class="icon-mention"></i></a>
+                                    </div>
+
+                                    <div class="media-body">
+                                        <a href="#">Taylor Swift</a> mentioned you in a post "Angular JS. Tips and tricks"
+                                        <div class="media-annotation">4 minutes ago</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+</li> -->

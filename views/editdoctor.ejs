@@ -1,0 +1,151 @@
+<% include ./partials/dheader %>
+
+    <div class = row>
+        <div class="col-lg-12">
+                 <!-- Traffic sources -->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Account Settings</h1>
+                        <div class="heading-elements">
+                            <span><i class="icon-bell2"></i></span>
+                        </div>
+                    </div>
+                <div class="container-fluid">
+            <div class="row">                                        
+        <div class="col-lg-12">
+                    <!-- Registration form -->
+                    <form action="/accountsettings<%= doctor.id %>?_method=PUT" method = "post">
+                        <div class="row">
+                            <div class="col-lg-6 col-lg-offset-3">
+                                <div class="panel registration-form">
+                                    <div class="panel-body">
+                                        <div class="text-center">
+                                            <!-- <div class="icon-object border-success text-success"> --><img height="120" width="150" src="assets/images/logo/logo.png"><!-- </div> -->
+                                            <h5 class="content-group-lg">Edit Your Account</h5>
+                                        </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group has-feedback">
+                                            <input type="email" class="form-control" placeholder="Username" name = "doctor[username]" value = "<%= doctor.username %>" required>
+                                            <div class="form-control-feedback">
+                                                <!-- <i class="icon-user-plus text-muted"></i> -->
+                                                <span class = "fa fa-envelope"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+<!--                                </div>      
+                                        <div class="row"> -->
+                                            <div class="col-md-6">
+                                                <div class="form-group has-feedback">
+                                                    <input type="text" class="form-control" placeholder="Name" name = "doctor[name]" value = "<%= doctor.name %>" required>
+                                                    <div class="form-control-feedback">
+                                                        <!-- <i class="icon-user-check text-muted"></i> -->
+                                                            <i class = "fa fa-user "></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group has-feedback">
+                                                    <input class="form-control" placeholder="Contact Number" type="text" name = "doctor[num]" pattern=".{11,}"  title="11 Numbers minimum" value = "<%= doctor.num %>" required>
+                                                    <div class="form-control-feedback">
+                                                        <!-- <i class="icon-user-telephone2 text-muted"></i> -->
+                                                        <span class="icon-phone"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="col-md-6">
+                                                <div class="form-group has-feedback">
+                                                    <a href="/editpass<%= doctor.id %>" class = "btn btn-primary btn-block"> Change Password</a>
+                                                    <div class="form-control-feedback">
+                                                        <!-- <i class="icon-user-telephone2 text-muted"></i> -->
+<!--                                                         <span class="icon-phone"></span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group has-feedback">
+                                                    <input class="form-control" placeholder="Age" type="number" name = "doctor[age]" value = "<%= doctor.age %>" required>
+                                                    <div class="form-control-feedback">
+                                                        <!-- <i class="icon-mention text-muted"></i> -->
+                                                        <i class="fa fa-list" aria-hidden="true"></i>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group has-feedback">
+                                                    <input type="text" class="form-control" placeholder="CNIC" name = "doctor[cnic]" value = "<%= doctor.cnic %>" required>
+                                                    <div class="form-control-feedback">
+                                                        <!-- <i class="icon-mention text-muted"></i> -->
+                                                        <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                                        
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class = "row">
+                                            <div class="col-md-6">
+                                                <div class="form-group has-feedback">
+                                                    <input type="text" class="form-control" placeholder="Qualification" name = "doctor[qualification]" value = "<%= doctor.qualification %>" required>
+                                                    <div class="form-control-feedback">
+                                                        <!-- <i class="icon-mention text-muted"></i> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group has-feedback">
+                                                    <input type="text" class="form-control" placeholder="Description" name = "doctor[description]" value = "<%= doctor.description %>" required>
+                                                    <div class="form-control-feedback">
+                                                        <!-- <i class="icon-user-plus text-muted"></i> -->
+                                                        <i class="fa fa-globe" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group has-feedback">
+                                                    <input type="text" class="form-control" placeholder="Hospital Address" name = "doctor[specialization]" value = "<%= doctor.specialization %>" required>
+                                                    <div class="form-control-feedback">
+                                                        <!-- <i class="icon-user-plus text-muted"></i> -->
+                                                        <i class="fa fa-globe" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>                                        
+                                        <div class="text-right">
+                                            <button type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b>Save Changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                            </div>
+                        </div>
+                    </div>                             
+                <div class="position-relative" id=""></div>
+            </div>
+            <!-- /traffic sources -->
+        </div>
+    </div>
+                    <!-- /registration form -->
+    <!-- /page container -->
+<% include ./partials/footer %>

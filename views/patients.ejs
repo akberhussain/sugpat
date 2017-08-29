@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 		
 	<div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-12">
 
                             <!-- Traffic sources -->
                             <div class="panel panel-flat">
@@ -22,20 +22,20 @@
                                                 	
                                                 	<tr>
 									                    <th><h4><strong>Name</strong></h4></th>
-									                    <th><h4><strong>Email</strong></h4></th>
-									                    <th><h4><strong>CNIC</strong></h4></th>
-									                    <th><h4><strong>Contact</strong></h4></th>
-									                    <th><h4><strong>Gender</strong></h4></th>
+									                    <th><h4><strong>React</strong></h4></th>
+
 									                </tr>
                                                	</thead>
                                                	<tbody>
                                                		<% patients.forEach(function(patient){ %>
                                                			<tr>
-                                               				<td><strong><%= patient.name %></strong></td>
-                                               				<td><strong><%= patient.username %></strong></td>
-                                               				<td><strong><%= patient.cnic %></strong></td>
-                                               				<td><strong><%= patient.num %></strong></td>
-                                               				<td><strong><%= patient.gender %></strong></td>
+                                                      <td><h5><a href="patient<%= patient._id %>" ><%= patient.name %></a></h5></td>
+                                               				
+                                                      <td>
+                                                        <form action = "/removepatient<%= patient.id %>?_method=delete" method = "post">
+                                                          <input type = "submit" class = "btn btn-danger btn-xs" value = "Remove Patient">
+                                                        </form>
+                                                      </td>
                                                			</tr>
                                                 	<% }); %>
                                                	</tbody>		

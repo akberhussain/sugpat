@@ -1,103 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sugpat</title>
+<% include ./partials/header %>
 
-
-<style type="text/css">
-    
-        body{
-        background-image: url("assets/images/background/1a.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    /*font-family: comic sans MS;*/
-    }
-  html{
-    height: 100%;
-  }
-
-  div .panel{
-        background-color: rgba(250,250,250,.8);
-      }
-        
-</style>    
-
-
-    <!-- Global stylesheets -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-    <link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/core.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/components.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- /global stylesheets -->
-
-    <!-- Core JS files -->
-    <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
-    <!-- /core JS files -->
-
-    <!-- Theme JS files -->
-    <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
-
-    <script type="text/javascript" src="assets/js/core/app.js"></script>
-    <script type="text/javascript" src="assets/js/pages/login.js"></script>
-
-    <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
-    <!-- /theme JS files -->
-
-</head>
-
-<body class="login-container" id ="sbody">
-
-
-<div class = "container">
-      <% if (error && error.length > 0){ %>
-        <div class = "alert alert-danger">
-          <%= error %>
-        </div>
-      <% } %>
-      <% if (success && success.length > 0){ %>      
-        <div class = "alert alert-success">
-          <%= success %>
-        </div>
-      <% } %>
-    </div>
-
-
-    <!-- Page container -->
-    <div class="page-container">
-
-        <!-- Page content -->
-        <div class="page-content">
-
-            <!-- Main content -->
-            <div class="content-wrapper">
-
-                <!-- Content area -->
-                <div class="content">
-
+    <div class = row>
+        <div class="col-lg-12">
+                 <!-- Traffic sources -->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Add Doctor</h1>
+                        <div class="heading-elements">
+                            <span><i class="icon-bell2"></i></span>
+                        </div>
+                    </div>
+                <div class="container-fluid">
+            <div class="row">                                        
+        <div class="col-lg-12">
                     <!-- Registration form -->
-                    <form action="/signup" method = "post">
+                    <form action="/register" method = "post">
                         <div class="row">
                             <div class="col-lg-6 col-lg-offset-3">
                                 <div class="panel registration-form">
                                     <div class="panel-body">
                                         <div class="text-center">
                                             <!-- <div class="icon-object border-success text-success"> --><img height="120" width="150" src="assets/images/logo/logo.png"><!-- </div> -->
-                                            <h5 class="content-group-lg">Create account</h5>
+                                            <h5 class="content-group-lg">Create Doctor's account</h5>
                                         </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group has-feedback">
-                                            <input type="text" class="form-control" placeholder="Username" name = "username">
+                                            <input type="email" class="form-control" placeholder="Username" name = "username" required>
                                             <div class="form-control-feedback">
                                                 <!-- <i class="icon-user-plus text-muted"></i> -->
                                                 <span class = "fa fa-envelope"></span>
@@ -109,7 +38,7 @@
                                         <div class="row"> -->
                                             <div class="col-md-6">
                                                 <div class="form-group has-feedback">
-                                                    <input type="text" class="form-control" placeholder="Name" name = "name">
+                                                    <input type="text" class="form-control" placeholder="Name" name = "name" required>
                                                     <div class="form-control-feedback">
                                                         <!-- <i class="icon-user-check text-muted"></i> -->
                                                             <i class = "fa fa-user "></i>
@@ -123,7 +52,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group has-feedback">
-                                                    <input type="password" class="form-control" placeholder="Create password" name = "password" pattern=".{6,}"  title="Six or more characters">
+                                                    <input type="password" class="form-control" placeholder="Create password" name = "password" pattern=".{6,}"  title="Six or more characters" required>
                                                     <div class="form-control-feedback">
                                                         <!-- <i class="icon-user-lock text-muted"></i> -->
                                                         <span class = "fa fa-unlock-alt "></span>
@@ -133,7 +62,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group has-feedback">
-                                                    <input class="form-control" placeholder="Contact Number" type="text" name = "num" pattern=".{11,}"  title="11 Numbers minimum">
+                                                    <input class="form-control" placeholder="Contact Number" type="text" name = "num" pattern=".{11,}"  title="11 Numbers minimum" required>
                                                     <div class="form-control-feedback">
                                                         <!-- <i class="icon-user-telephone2 text-muted"></i> -->
                                                         <span class="icon-phone"></span>
@@ -145,7 +74,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group has-feedback">
-                                                    <input class="form-control" placeholder="Age" type="number" name = "age">
+                                                    <input class="form-control" placeholder="Age" type="number" name = "age" required>
                                                     <div class="form-control-feedback">
                                                         <!-- <i class="icon-mention text-muted"></i> -->
                                                         <i class="fa fa-list" aria-hidden="true"></i>
@@ -156,7 +85,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group has-feedback">
-                                                    <input type="text" class="form-control" placeholder="CNIC" name = "cnic">
+                                                    <input type="text" class="form-control" placeholder="CNIC" name = "cnic" required>
                                                     <div class="form-control-feedback">
                                                         <!-- <i class="icon-mention text-muted"></i> -->
                                                         <i class="fa fa-id-card-o" aria-hidden="true"></i>
@@ -170,7 +99,7 @@
                                         <div class = "row">
                                             <div class="col-md-6">
                                                 <div class="form-group has-feedback">
-                                                    <input type="text" class="form-control" placeholder="Qualification" name = "qualification">
+                                                    <input type="text" class="form-control" placeholder="Qualification" name = "qualification" required>
                                                     <div class="form-control-feedback">
                                                         <!-- <i class="icon-mention text-muted"></i> -->
                                                     </div>
@@ -179,7 +108,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group has-feedback">
-                                                    <select class = "form-control" name = "gender">
+                                                    <select class = "form-control" name = "gender ">
                                                         <option value = "Not Defined" >Select Gender</option>
                                                         <option value = "Male" >Male</option>
                                                         <option value = "Female" >Female</option>
@@ -194,7 +123,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group has-feedback">
-                                                    <input type="text" class="form-control" placeholder="Description" name = "description">
+                                                    <input type="text" class="form-control" placeholder="Description" name = "description" required>
                                                     <div class="form-control-feedback">
                                                         <!-- <i class="icon-user-plus text-muted"></i> -->
                                                         <i class="fa fa-globe" aria-hidden="true"></i>
@@ -206,7 +135,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group has-feedback">
-                                                    <input type="text" class="form-control" placeholder="Specialization" name = "specialization">
+                                                    <input type="text" class="form-control" placeholder="Hospital Address" name = "specialization" required>
                                                     <div class="form-control-feedback">
                                                         <!-- <i class="icon-user-plus text-muted"></i> -->
                                                         <i class="fa fa-globe" aria-hidden="true"></i>
@@ -229,47 +158,14 @@
                             </div>
                         </div>
                     </form>
-                    <!-- /registration form -->
-                </div>
-                <!-- /content area -->
-
+                            </div>
+                        </div>
+                    </div>                             
+                <div class="position-relative" id=""></div>
             </div>
-            <!-- /main content -->
-
+            <!-- /traffic sources -->
         </div>
-        <!-- /page content -->
-
     </div>
+                    <!-- /registration form -->
     <!-- /page container -->
-<script type="text/javascript">
-    var arr= [
-
-        "assets/images/background/2a.jpg",
-        "assets/images/background/3a.jpg",
-        "assets/images/background/4a.jpg",
-        "assets/images/background/5a.jpg",
-        "assets/images/background/6a.jpg",
-        "assets/images/background/7a.jpg",
-        "assets/images/background/8a.jpg",
-        "assets/images/background/1a.jpg",
-        
-    ];
-        var i = 0;
-    function screensavers(){
-        if(i==4){
-        i=0;
-    }
-    
-    document.getElementById("sbody").style.backgroundImage = "url('"+arr[i]+"')";
-    i++;
-
-    }
-    
-    // screensaver();
-    setInterval(screensavers, 2000);
-
-</script>
-
-
-</body>
-</html>
+<% include ./partials/footer %>
