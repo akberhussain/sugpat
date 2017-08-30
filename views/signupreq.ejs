@@ -19,18 +19,15 @@
                                         <div class="col-md-12">
  											 <table class = "table table-striped table-bordered table-hover table-responsive box-shadow-table">
 				                            <thead class = "thead-inverse">                            	
-					                                <tr>
+		                                <tr>
 									                    <th><h4><strong>Email</strong></h4></th>
-									                    <th><h4><strong>React</strong></h4></th>
-
-
-									                </tr>
+  									                </tr>
                                                	</thead>
                                                	<tbody>
                                                		<% foundreq.forEach(function(request){ %>
                                                			<tr>
-                                                      <td><h5><a href="/req<%= request.id %>" ><%= request.username %></a></h5></td>
                                                       <td>
+                                                        <h5><a href="/req<%= request.id %>" ><%= request.username %></a></h5>
                                                         <form style = "display: inline;" action = "/signup<%= request.id %>" method = "post">
                                                           <input type = "submit" value = "Add" class = "btn btn-xs btn-success">
                                                         </form>

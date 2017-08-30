@@ -6,3 +6,12 @@
 .span5{
     display: block;
 }
+
+.specify{
+    background: none;
+    border: none;
+    color: #595e5a;
+}
+.dform{
+    display: inline;
+}

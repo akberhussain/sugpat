@@ -24,8 +24,7 @@
                                                     <tr>
                                                         <th><h5>Doctor</h5></th>
                                                         <th><h5>Date</h5></th>
-                                                        <th><h5>From</h5></th>
-                                                        <th><h5>Till</h5></th>
+                                                        <th><h5>Time</h5></th>
                                                     </tr>
                                                      <% appointments.forEach(function(appointment){ %>
                                                     <% if(currentUser && appointment.patient2.id.equals(currentUser._id)){ %>
@@ -33,8 +32,7 @@
                                                     <tr>
                                                         <td><h4><a href="/doctor<%= appointment.doctor2.id %>"><%= appointment.doctor2.name1 %></a></h4></td>
                                                         <td><h5><%= appointment.appointmentdate %></h5></td>
-                                                        <td><strong style = " font-size: 18px;"><%= appointment.appointmenttime1 %></strong></td>
-                                                        <td><strong style = " font-size: 18px;"><%= appointment.appointmenttime2 %></strong></td>
+                                                        <td><strong style = " font-size: 18px;"><%= appointment.appointmenttime1 %> - <%= appointment.appointmenttime2 %></strong></td>
                                                     </tr>
                                                         
                                                         <% } %>
