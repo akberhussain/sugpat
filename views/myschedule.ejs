@@ -23,15 +23,13 @@
                                                     <tr>
                                                         <th><h5>Date</h5></th>
                                                         <th><h5>Time</h5></th>
-                                                        <th><h5>React</h5></th>
                                                     </tr>
                                                      <% schedule.forEach(function(schd){ %>
                                                     <% if(currentUser && schd.author.id.equals(currentUser._id)){ %>
                                                     
                                                     <tr>
                                                         <td><h5><%= schd.date %></h5></td>
-                                                        <td><strong style = " font-size: 18px;"><%= schd.time1 %> - <%= schd.time2 %></strong></td>
-                                                        <td>
+                                                        <td><strong style = " font-size: 18px;"><%= schd.time1 %> - <%= schd.time2 %></strong>
                                                             <form action = "/removeavailablity/<%= schd.id %>?_method=delete" method = "post">
                                                                 <input type = "submit" class = "btn btn-danger btn-sm" value = "Delete" >
                                                             </form>
