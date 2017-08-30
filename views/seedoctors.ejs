@@ -24,15 +24,12 @@
                                                     <tr>
                                                         <th><h5>Date</h5></th>
                                                         <th><h5>Time</h5></th>
-                                                        <th><h5>Appointment</h5></th>
                                                     </tr>
                                                      <% schedule.forEach(function(schd){ %>
                                                     <% if(currentUser && schd.author.id.equals(did)){ %>
                                                         
                                                     
                                                     <tr>
-                                                        <td><h5><%= schd.date %></h5></td>
-                                                        <td><strong style = " font-size: 18px;"><%= schd.time1 %> - <%= schd.time2 %></strong></td>
                                                         <% if(schd.time1 == schd.time2){ %>
                                                             <% var button = 'danger' %>   
                                                             <% var url = '#' %>   
@@ -45,7 +42,8 @@
                                                         <% appointment = 'Take Appointment' %>   
                                                     <% } %>
 
-                                                        <td><strong><a class = "btn btn-<%= button %>" href="<%= url %>"><%= appointment %></a></strong></td>
+                                                        <td><h5><%= schd.date %></h5></td>
+                                                        <td><strong style = " font-size: 18px;"><%= schd.time1 %> - <%= schd.time2 %></strong><div><a class = "btn btn-<%= button %>" href="<%= url %>"><%= appointment %></a></div></td>
                                                     </tr>
                                                         
                                                         <% } %>

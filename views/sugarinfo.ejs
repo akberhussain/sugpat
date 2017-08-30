@@ -113,8 +113,8 @@
                                                         
                                                         <td><h5><%= sugarl.date1 %></h5></td>
                                                         <td><strong style = " font-size: 18px;"><%= sugarl.sugarLevel %></strong>
-                                                          <form class = "dform" action = "/deletesugarlevel<%= sugarl.id %>?_method=delete" method = "post" >
-                                                            <input type = "submit" value = "Delete" class = "btn btn-xs btn-danger specify">
+                                                          <form action = "/deletesugarlevel<%= sugarl.id %>?_method=delete" method = "post" >
+                                                            <input type = "submit" value = "Delete" class = "btn btn-xs btn-danger">
                                                           </form>
                                                         </td>
                                                          <% add += sugarl.sugarLevel %>
