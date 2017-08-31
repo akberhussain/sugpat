@@ -10,6 +10,8 @@ var Available = require("../models/available");
 var Request = require("../models/request");
 var Appointment = require("../models/appointment");
 var SignupRequest = require("../models/signupreq");
+var multer = require('multer');
+var upload = multer({dest: './public/uploads/img/'})
 
 
 router.get("/",function(req, res){
@@ -316,7 +318,49 @@ router.get("/availablity:id",middleware.isLoggedIn ,function(req,res){
         });
 })
 
-router.post("/signuprequest", checkIfAdmin ,function(req, res){
+router.post("/changeprofile:id", upload.single('avatar'), function(req, res){    
+    if(req.file){
+      Patient.findById(req.params.id, function(err, patient){
+        patient.profilepic = req.file.path;
+
+        if(err){
+            req.flash("error","Something went wrong please try with correct extension or try later");
+            res.redirect("/profile");
+        } else{
+            patient.save();
+            req.flash("success", "Sucessfully updated profile picture");
+            res.redirect("/profile");
+        }
+    });            
+} else{
+        req.flash("error", "Please Upload Valid File");
+        res.redirect("/profile");
+    } 
+
+});
+
+router.post("/updateprofile:id", upload.single('avatar'), function(req, res){    
+    if(req.file){
+      Doctor.findById(req.params.id, function(err, doctor){
+        doctor.profilepic = req.file.path;
+
+        if(err){
+            req.flash("error","Something went wrong please try with correct extension or try later");
+            res.redirect("/myprofile");
+        } else{
+            doctor.save();
+            req.flash("success", "Sucessfully updated profile picture");
+            res.redirect("/myprofile");
+        }
+    });            
+} else{
+        req.flash("error", "Please Upload Valid File");
+        res.redirect("/profile");
+    } 
+
+});
+
+router.post("/signuprequest", function(req, res){
     
     var username = req.body.username;
     var name = req.body.name;
@@ -327,7 +371,8 @@ router.post("/signuprequest", checkIfAdmin ,function(req, res){
     var gender = req.body.gender;
     var password = req.body.password;
     var address = req.body.address;
-    var obj = {username: username, name: name, cnic: cnic, age: age, num: num, gender: gender, bloodgroup: bloodgroup, password: password, address:address};
+    var profilepic = "public\\uploads\\img\\06be91a055c7b1aef5ee881472297401";
+    var obj = {username: username, name: name, cnic: cnic, age: age, num: num, gender: gender, bloodgroup: bloodgroup, password: password, address:address, profilepic: profilepic};
     var a;
 
     Patient.find({}, function(err, patients){
@@ -358,7 +403,7 @@ router.post("/signuprequest", checkIfAdmin ,function(req, res){
    
 });
 
-router.get("/signuprequests", function(req, res){
+router.get("/signuprequests", checkIfAdmin ,function(req, res){
     SignupRequest.find({}, function(err, foundreq){
         res.render("signupreq", {foundreq: foundreq});
     });
@@ -436,7 +481,7 @@ router.delete("/deleteuser:id", checkIfAdmin, function(req, res){
 });
 
 router.delete("/removeavailablity/:id", middleware.checkIfDoctor, function(req, res){
-    console.log(req.params.id);
+    
    Available.findByIdAndRemove(req.params.id, function(err){
       if(err){
           res.redirect("back");
@@ -647,26 +692,26 @@ router.post("/makeavailablity", middleware.checkIfDoctor, function(req, res){
     date.toString();
     var time1 = req.body.time1;
     var time2 = req.body.time2;
+    if(time1== "Unavailable" || time2 == "Not Available" || date == ""){
+        req.flash("error", "All fields are required");
+        res.redirect("/myprofile");
+    } else{
+        var author = {
+            id: req.user.id,
+            username2: req.user.username
+        };
 
-    var author = {
-        id: req.user.id,
-        username2: req.user.username
-    };
+        var obj = {date:date, time1: time1, time2:time2, author:author};
 
-    var obj = {date:date, time1: time1, time2:time2, author:author};
-
-    Available.create(obj, function(err, available){
-        if(err){
-            console.log(err);
-        }
+        Available.create(obj, function(err, available){
+            if(err){
+                console.log(err);
+            }
         else{
-            // available.save();
             res.redirect("/myprofile");
         }
     })
-
-
-
+ }
 
 });
 
@@ -944,7 +989,7 @@ router.post('/register', checkIfAdmin ,(req,res) => {
       doctor.specialization = req.body.specialization;
       doctor.description = req.body.description;
       doctor.gender = req.body.gender;
-      // doctor.address = req.body.address;
+      doctor.profilepic = "public\\uploads\\img\\06be91a055c7b1aef5ee881472297401";
       var a;
 
       Doctor.find({}, function(err, doctors){
@@ -985,6 +1030,7 @@ router.post('/signup:id',(req,res) => {
       patient.cnic = foundPatient.cnic;
       patient.gender = foundPatient.gender;
       patient.name = foundPatient.name;
+      patient.profilepic = foundPatient.profilepic;
       var a;
 
       Patient.find({}, function(err, patients){

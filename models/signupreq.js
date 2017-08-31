@@ -10,7 +10,8 @@ var signupRequestSchema = new mongoose.Schema({
     gender: String,
     address: String,
     bloodgroup: String,
-    num: String
+    num: String,
+    profilepic: String
 
 });
 

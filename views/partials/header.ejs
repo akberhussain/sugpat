@@ -38,6 +38,15 @@
 
     <script type="text/javascript" src="assets/js/pages/general_widgets_stats.js"></script>
 
+    <script type="text/javascript" src="assets/js/plugins/forms/validation/validate.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script type="text/javascript" src="assets/js/pages/login_validation.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/uploaders/fileinput/plugins/purify.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/uploaders/fileinput/plugins/sortable.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
+    <script type="text/javascript" src="assets/js/pages/uploader_bootstrap.js"></script>
+
+
     <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
     <!-- /theme JS files -->
 
@@ -153,9 +162,9 @@
                     <div class="sidebar-user-material">
                         <div class="category-content">
                             <div class="sidebar-user-material-content">
-                                <a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-responsive" alt=""></a>
+                                <a href="#" data-toggle="modal" data-target="#modal-recover"><img src=<%= currentUser.profilepic.split("public").pop() %> class="img-circle img-responsive" alt="Nothing"></a>
                                 <h6><%= currentUser.name %></h6>
-                                <span class="text-size-small">Sindh, Pakistan</span>
+                                <span class="text-size-small">Pakistan</span>
                             </div>
                                                         
                             <div class="sidebar-user-material-menu">
@@ -232,3 +241,34 @@
                             <!-- Content area -->
             <div class = "content-wrapper">                
                 <div class="content">
+                    <div class="container">
+                    <div id="modal-recover" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content login-form">
+                                <!-- Form -->
+                                <form class="modal-body" action="/changeprofile<%= currentUser.id %>" method = "post" encType='multipart/form-data'>
+                                    <div class="text-center">
+                                        <div class="icon-object border-warning text-warning"><i class="icon-spinner11"></i></div>
+                                        <h5 class="content-group">Update Profile Picture <small class="display-block"></small></h5>
+                                    </div>
+
+                                    <!-- <div class="form-group has-feedback">
+                                        <input type="email" class="form-control" placeholder="Your email">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-mail5 text-muted"></i>
+                                        </div>
+                                    </div> -->
+                                <div class="form-group">
+                                    <div class="col-lg-10">
+                                        <input type="file" class="file-input-extensions form-control btn btn-block btn-default" name = "avatar">
+                                        <span class="help-block">Only <code>jpg</code> extensions are allowed.</span>
+                                    </div>
+                                </div>
+                                    <button type="submit" class="btn bg-blue btn-block">Update <i class="icon-circle-right2 position-right"></i></button>
+                                    <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Cancel</button>
+                                </form>
+                                <!-- /form -->
+                              </div>
+                            </div>
+                        </div>
+                    </div>

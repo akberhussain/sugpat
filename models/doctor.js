@@ -15,7 +15,8 @@ var doctorSchema = new mongoose.Schema({
     specialization: String,
     description: String,
     gender: String,
-    address: String
+    address: String,
+    profilepic: String
 });
 
 // doctorSchema.plugin(passportLocalMongoose);
@@ -30,7 +31,7 @@ var doctorSchema = new mongoose.Schema({
 
 doctorSchema.pre('save',function(next){
   const doctor = this;
-
+  if (!doctor.isModified('password')) return next();
   bcrypt.genSalt(10,function(err,salt){
     if(err) return next(err);
     bcrypt.hash(doctor.password,salt,null,function(err,hash){

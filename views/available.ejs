@@ -1,159 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sugpat</title>
+<% include ./partials/dheader %>
 
-    <!-- Global stylesheets -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-    <link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/core.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/components.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/button.min.css">
-    <!-- /global stylesheets -->
-
-    <!-- Core JS files -->
-    <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
-    <!-- /core JS files -->
-
-    <!-- Theme JS files -->
-    <script type="text/javascript" src="assets/js/plugins/visualization/d3/d3.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/ui/moment/moment.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/pickers/daterangepicker.js"></script>
-
-    <script type="text/javascript" src="assets/js/core/app.min.js"></script>
-    <script type="text/javascript" src="assets/js/pages/dashboard.js"></script>
-
-    <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
-    <!-- /theme JS files -->
-
-
-
-</head>
-
-<body>
-
-<div class="navbar navbar-inverse bg-indigo">
-        <div class="navbar-header">
-            <a class="navbar-brand"  href="#" style = "padding: 0px;"><img  src="assets/my_assets/logo.png" alt="" style = "width:60px; height: 50px;"></a>
-            <a class="navbar-brand" href="#" style = "padding-left: 0px;">Sugpat</a>
-
-            <ul class="nav navbar-nav visible-xs-block">
-                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
-                <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
-            </ul>
-        </div>
-
-        <div class="navbar-collapse collapse" id="navbar-mobile">
-            <ul class="nav navbar-nav">
-                <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
-            </ul>
-
-            <div class="nav navbar-nav navbar-right">
-                <% if(currentUser){ %>
-                    <li><a href="#">Signed in as <%= currentUser.name %></a></li>
-            <% } %>
-                
-            </div>
-        </div>
-</div>
-    <!-- /main navbar -->
-
-<div class = "container">
-      <% if (error && error.length > 0){ %>
-        <div class = "alert alert-danger">
-          <%= error %>
-        </div>
-      <% } %>
-      <% if (success && success.length > 0){ %>      
-        <div class = "alert alert-success">
-          <%= success %>
-        </div>
-      <% } %>
-    </div>
-
-<!-- Page container -->
-<div class="page-container">
-
-        <!-- Page content -->
-<div class="page-content">
-
-
-<div class="sidebar sidebar-main sidebar-default">
-                <div class="sidebar-content">
-
-                    <!-- User menu -->
-                    <div class="sidebar-user-material">
-                        <div class="category-content">
-                            <div class="sidebar-user-material-content">
-                                <a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-responsive" alt=""></a>
-                                <h6><%= currentUser.name %></h6>
-                                <span class="text-size-small">Sindh, Pakistan</span>
-                            </div>
-                                                        
-                            <div class="sidebar-user-material-menu">
-                                <a href="#user-nav" data-toggle="collapse"><span>My account</span> <i class="caret"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="navigation-wrapper collapse" id="user-nav">
-                            <ul class="navigation">
-                                <li><a href="/aboutme"><i class="icon-user-plus"></i> <span>My profile</span></a></li>        
-                                <li class="divider"></li>
-                                <li><a href="/logout"><i class="icon-switch2"></i> <span>Logout</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /user menu -->
-
-
-                    <!-- Main navigation -->
-                    <div class="sidebar-category sidebar-category-visible">
-                        <div class="category-content no-padding">
-                            <ul class="navigation navigation-main navigation-accordion">
-
-
-                                        
-
-                                <!-- Main -->
-                                <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-
-                                        <li><a href="/myprofile"><i class="icon-list-unordered"></i><span>Home</span></a></li>
-                                        <li><a href="/beavailable"><i class="icon-list-unordered"></i><span>Be Availaible</span></a></li>
-                                        <li><a href="/myschedule"><i class="icon-list-unordered"></i><span>My Schedule</span></a></li>
-                                        <li><a href="/myappointments"><i class="icon-list-unordered"></i><span>See Appointments</span></a></li>
-                                        <li><a href="/logout"><i class="icon-list-unordered"></i> <span>Logout</span></a></li>
-                          
-                                <!-- /main -->
-
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /main navigation -->
-
-                </div>
-            </div>
-
-                            <!-- Content area -->
-                <div class = "content-wrapper">                
-                    <div class="content">
-
-                        <!-- form Starts -->
-
-                                    <div class = row>
+    <div class = row>
         <div class="col-lg-12">
-                 <!-- Traffic sources -->
             <div class="panel panel-flat">
                 <div class="panel-heading">
                     <h1 class="panel-title">Be Available</h1>
@@ -195,7 +43,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group ">
                                                     
-                                                    <select name="time1" id="time" class = "form-control">
+                                                    <select name="time1" id="time" class = "form-control" required>
 
                                                     <option value = "Unavailable">From</option>    
                                                     <option value="5:00 AM">5:00 AM</option>
@@ -307,7 +155,7 @@
                                                 <div class="form-group">
                                                     
 
-                                                    <select name="time2" id="time" class = "form-control">
+                                                    <select name="time2" id="time" class = "form-control" required>
                                                     <option value = "Not Available">Till</option>    
                                                     <option value="5:00 AM">5:00 AM</option>
                                                     <option value="5:15 AM">5:15 AM</option>

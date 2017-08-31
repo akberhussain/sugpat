@@ -14,6 +14,7 @@ var patientSchema = new mongoose.Schema({
     address: String,
     bloodgroup: String,
     num: String,
+    profilepic: String
 });
 
 // patientSchema.plugin(passportLocalMongoose);
@@ -28,8 +29,7 @@ var patientSchema = new mongoose.Schema({
 
 patientSchema.pre('save',function(next){
   var patient = this;
-
-    // if (patient.isModified('password')) return next();
+     if (!patient.isModified('password')) return next();
       bcrypt.genSalt(10,function(err,salt){
     
     if(err) return next(err);
