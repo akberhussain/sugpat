@@ -10,8 +10,22 @@ var Available = require("../models/available");
 var Request = require("../models/request");
 var Appointment = require("../models/appointment");
 var SignupRequest = require("../models/signupreq");
+var SugarImage = require("../models/sugarlevelviaimage");
 var multer = require('multer');
 var upload = multer({dest: './public/uploads/img/'})
+var okrabyte = require("okrabyte");
+// var storage = multer.memoryStorage()
+// var upload = multer({ storage: storage })
+// var storage = multer.diskStorage({
+  // destination: function (req, file, cb) {
+  //   cb(null, '/tmp/my-uploads')
+  // },
+//   filename: function (req, file, cb) {
+//     cb(null, file.fieldname + '-' + Date.now())
+//   }
+// })
+
+// var upload = multer({ storage: storage })
 
 
 router.get("/",function(req, res){
@@ -318,10 +332,28 @@ router.get("/availablity:id",middleware.isLoggedIn ,function(req,res){
         });
 })
 
+router.post("/sugarlevelviapicture:id", upload.single("avatar"), function(req, res){
+    var sugarnumber = 0;
+    if(req.file){
+        okrabyte.decodeFile(req.file.path, function(error, data){
+        if(data&&data.length>0){
+            res.redirect("/sugarlevel0"+data);
+        } else{
+            req.flash("error","Value Not Found");
+            res.redirect("back");
+        }   
+            
+        });
+    }
+});
+
 router.post("/changeprofile:id", upload.single('avatar'), function(req, res){    
     if(req.file){
       Patient.findById(req.params.id, function(err, patient){
+        //patient.profilepic = req.file;
+        // console.log(typeof(req.file.buffer));
         patient.profilepic = req.file.path;
+        // console.log(typeof(patient.profilepic.image))
 
         if(err){
             req.flash("error","Something went wrong please try with correct extension or try later");
@@ -604,8 +636,15 @@ router.get("/myschedule", middleware.checkIfDoctor, function(req, res){
 
     });
 });
+// var sugarnumber = 0;
+//var num1;
 
-router.get("/sugarlevel", middleware.isLoggedIn, function(req, res){
+router.get("/sugarlevel:id", middleware.isLoggedIn, function(req, res){
+            
+            var sn = req.params.id;
+            var numb = sn.match(/\d/g);
+            numb = numb.join("");
+            numb = Number(numb);
             
             var today = new Date();
             var dd = today.getDate();
@@ -622,8 +661,10 @@ router.get("/sugarlevel", middleware.isLoggedIn, function(req, res){
 
             today = yyyy+'-'+mm+'-'+dd;
             minimum = yyyy+'-'+mm+'-'+week;
-            
-            res.render("sugarlevel", {today:today, minimum: minimum});
+            if(Number(sn)>0){
+                num1 = Number(sn);    
+            }
+            res.render("sugarlevel", {today:today, minimum: minimum, numb:numb});
 })
 
 

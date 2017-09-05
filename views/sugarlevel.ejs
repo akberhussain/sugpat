@@ -45,14 +45,25 @@
                                     <div class = "col-md-6">
                                         <div class="form-group has-feedback">
                                             <h2 class = "content-group-lg text-right">Sugar Level</h2>
-                                            <input type = "number" name = "num" placeholder = "Sugar Level" class = "form-control" required>
+                                            <input type = "number" name = "num" placeholder = "Sugar Level" class = "form-control" value = "<%= numb %>" required>
                                         </div>
-                                    </div>
-
-                                            
+                                    </div>   
                                 </div>
+<!--                                 <div class= "row">
+                                    <div class = "col-md-6">
+                                        <div class="form-group has-feedback">
+                                        <h2 class = "content-group-lg">Via Picture</h2>
+                                          <form class="modal-body" action="/addsugarlevelviapicture<%= currentUser.id %>" method = "post" encType='multipart/form-data'>
+                                            <input type = "file" name = "avatar" class="file-input-extensions form-control btn btn-block btn-default">
+
+                                          </form>  
+                                        </div>
+                                     </div> 
+                                </div> -->
                                         
-                                     
+                                        <div>
+                                            <a href="#" data-toggle="modal" data-target="#modal-sugar">Post Via Image</a>
+                                        </div>
                                         <div class="text-right">
                                             <button type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Submit</button>
                                         </div>
@@ -73,6 +84,42 @@
 
                         </div>
 
-                    </div>   
+                    </div> 
+                    <div class="container">
+                    <div id="modal-sugar" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content login-form">
+                                <!-- Form -->
+                                <form class="modal-body" action="/sugarlevelviapicture<%= currentUser.id %>" method = "post" encType='multipart/form-data'>
+                                    <div class="text-center">
+                                        <div class="icon-object border-warning text-warning"><i class="icon-spinner11"></i></div>
+                                        <h5 class="content-group">Add Sugar Level Via OCR <small class="display-block"></small></h5>
+                                    </div>
+
+                                    <!-- <div class="form-group has-feedback">
+                                        <input type="email" class="form-control" placeholder="Your email">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-mail5 text-muted"></i>
+                                        </div>
+                                    </div> -->
+                                    <div class="row">
+                                
+                                <div class="form-group">
+                                    <div class="col-lg-10">
+                                    <h2 class = "content-group-lg">Sugar Level</h2>
+                                        <input type="file" class="file-input-extensions form-control btn btn-block btn-default" name = "avatar">
+                                        <span class="help-block">Only <code>jpg</code> extensions are allowed.</span>
+                                    </div>
+                                </div>   
+                                </div>
+                                
+                                    <button type="submit" class="btn bg-blue btn-block">Update <i class="icon-circle-right2 position-right"></i></button>
+                                    <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Cancel</button>
+                                </form>
+                                <!-- /form -->
+                              </div>
+                            </div>
+                        </div>
+                    </div>  
 
 <% include ./partials/footer %>
