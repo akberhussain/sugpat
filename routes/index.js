@@ -337,7 +337,9 @@ router.post("/sugarlevelviapicture:id", upload.single("avatar"), function(req, r
     if(req.file){
         okrabyte.decodeFile(req.file.path, function(error, data){
         if(data&&data.length>0){
-            res.redirect("/sugarlevel0"+data);
+            var dt = data.match(/\d/g);
+            dt = dt.join("");
+            res.redirect("/sugarlevel0"+dt);
         } else{
             req.flash("error","Value Not Found");
             res.redirect("back");
