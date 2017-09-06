@@ -5,10 +5,10 @@ var passportLocalMongoose = require("passport-local-mongoose");
 
 var doctorSchema = new mongoose.Schema({
     
-    username: String,
+    username: { type: String, required: true, index: { unique: true }},
     cnic: String,
     name:String,
-    password: String,
+    password: { type: String, required: true },
     num: String,
     age: Number,
     qualification: String,

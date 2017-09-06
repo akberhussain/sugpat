@@ -10,7 +10,6 @@ var Available = require("../models/available");
 var Request = require("../models/request");
 var Appointment = require("../models/appointment");
 var SignupRequest = require("../models/signupreq");
-var SugarImage = require("../models/sugarlevelviaimage");
 var multer = require('multer');
 var upload = multer({dest: './public/uploads/img/'})
 var okrabyte = require("okrabyte");
@@ -69,6 +68,9 @@ router.get("/login",function(req, res){
    res.render("login"); 
 });
 
+router.get("/admin", function(req, res){
+    res.render("login"); 
+});
 
 router.get("/doctorlogin",function(req, res){
    res.render("dlogin"); 
