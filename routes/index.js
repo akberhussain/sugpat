@@ -431,7 +431,7 @@ router.post("/signuprequest", function(req, res){
                     console.log(err);
                 } else{
 
-                    req.flash("success", "Your data is saved! You will be notified at" +username+ " Shortly after your account is varified");
+                    req.flash("success", "Your data is saved! You will be notified at " +username+ " Shortly after your account is varified");
                     res.redirect("/login");
                 }
             });
