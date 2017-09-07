@@ -13,6 +13,8 @@ var SignupRequest = require("../models/signupreq");
 var multer = require('multer');
 var upload = multer({dest: './public/uploads/img/'})
 var okrabyte = require("okrabyte");
+var nodemailer = require('nodemailer');
+
 // var storage = multer.memoryStorage()
 // var upload = multer({ storage: storage })
 // var storage = multer.diskStorage({
@@ -429,7 +431,7 @@ router.post("/signuprequest", function(req, res){
                     console.log(err);
                 } else{
 
-                    req.flash("success", "Your data is saved! Your account will be created shortly once approved by Admin ");
+                    req.flash("success", "Your data is saved! You will be notified at" +username+ " Shortly after your account is varified");
                     res.redirect("/login");
                 }
             });
@@ -1094,6 +1096,30 @@ router.post('/signup:id',(req,res) => {
                       patient.save((err,user) => {
                       if(err){console.error("Error: ", err)}
                       else{
+                        var nodemailer = require('nodemailer');
+
+                        var transporter = nodemailer.createTransport({
+                          service: 'gmail',
+                          auth: {
+                            user: 'sugpat.help@gmail.com',
+                            pass: '123abc..'
+                          }
+                        });
+
+                        var mailOptions = {
+                          from: 'sugpat.help@gmail.com',
+                          to: patient.username,
+                          subject: 'Sugpat Acount Confirmation',
+                          text: 'Your Account was successfully created at Sugpat kindly visit sugpat.azurewebsites.net/login to login to your account '
+                        };
+
+                        transporter.sendMail(mailOptions, function(error, info){
+                          if (error) {
+                            console.log(error);
+                          } else {
+                            console.log('Email sent: ' + info.response);
+                          }
+                        });
                         req.flash("success", "Patient Sucessfully Created")
                         res.redirect('back');
                       }
