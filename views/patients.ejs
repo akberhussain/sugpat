@@ -29,6 +29,7 @@
                                                	<tbody>
                                                		<% patients.forEach(function(patient){ %>
                                                			<tr>
+                                                      <% if(patient.id != admin){ %> 
                                                       <td><h5><a href="patient<%= patient._id %>" ><%= patient.name %></a></h5></td>
                                                				
                                                       <td>
@@ -36,6 +37,7 @@
                                                           <input type = "submit" class = "btn btn-danger btn-xs" value = "Remove Patient">
                                                         </form>
                                                       </td>
+                                                      <% } %>
                                                			</tr>
                                                 	<% }); %>
                                                	</tbody>		
