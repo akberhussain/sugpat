@@ -13,6 +13,8 @@ var SignupRequest = require("../models/signupreq");
 var multer = require('multer');
 var upload = multer({dest: './public/uploads/img/'})
 var okrabyte = require("okrabyte");
+var tesseract = require('node-tesseract');
+
 var nodemailer = require('nodemailer');
 
 // var storage = multer.memoryStorage()
@@ -344,6 +346,15 @@ router.post("/sugarlevelviapicture:id", upload.single("avatar"), function(req, r
             var dt = data.match(/\d/g);
             dt = dt.join("");
             res.redirect("/sugarlevel0"+dt);
+
+// Recognize text of any language in any format
+            // tesseract.process('C:\\Users\\Akber Hussain\\Desktop\\sl.png' ,function(err, data) {
+            //     console.log(data);
+            // if(data&&data.length>0){
+            // var dt = data.match(/\d/g);
+            // dt = dt.join("");
+            // res.redirect("/sugarlevel0"+dt);                
+            // // });
         } else{
             req.flash("error","Value Not Found");
             res.redirect("back");
@@ -408,9 +419,12 @@ router.post("/signuprequest", function(req, res){
     var bloodgroup = req.body.bloodgroup;
     var gender = req.body.gender;
     var password = req.body.password;
+    var heridity = req.body.heridity;
+    var drughistory = req.body.drughistory;
+    var diabetesduration = req.body.diabetesduration;
     var address = req.body.address;
     var profilepic = "public\\uploads\\img\\06be91a055c7b1aef5ee881472297401";
-    var obj = {username: username, name: name, cnic: cnic, age: age, num: num, gender: gender, bloodgroup: bloodgroup, password: password, address:address, profilepic: profilepic};
+    var obj = {username: username, name: name, cnic: cnic, age: age, num: num, gender: gender, bloodgroup: bloodgroup, password: password, heridity: heridity, drughistory: drughistory, diabetesduration: diabetesduration, address:address, profilepic: profilepic};
     var a;
 
     Patient.find({}, function(err, patients){
@@ -513,8 +527,8 @@ router.delete("/deleteuser:id", checkIfAdmin, function(req, res){
       if(err){
           res.redirect("back");
       }
-      req.flash("success", "Sucessfully deleted a Request");
-      res.redirect("back");
+      // req.flash("success", "Sucessfully deleted a Request");
+      res.redirect("/signuprequests");
    }); 
 });
 
@@ -654,19 +668,24 @@ router.get("/sugarlevel:id", middleware.isLoggedIn, function(req, res){
             
             var today = new Date();
             var dd = today.getDate();
-            var week = today.getDate()-23;
+            var week = today.getDate()-3;
             var mm = today.getMonth()+1; //January is 0!
             var yyyy = today.getFullYear();
+            // console.log(mm +"   "+ week)
 
             if(dd<10){
                     dd='0'+dd
                 } 
                 if(mm<10){
                     mm='0'+mm
+                }
+                if(week<10){
+                    week = '0'+week
                 } 
 
             today = yyyy+'-'+mm+'-'+dd;
             minimum = yyyy+'-'+mm+'-'+week;
+            // console.log(today+"    "+ minimum);
             if(Number(sn)>0){
                 num1 = Number(sn);    
             }
@@ -1065,7 +1084,7 @@ router.post('/register', checkIfAdmin ,(req,res) => {
 
 
 router.post('/signup:id',(req,res) => {
-
+    var myid = req.params.id;
     SignupRequest.findById(req.params.id, function(err, foundPatient){
       var patient = new Patient();
       patient.username = foundPatient.username;
@@ -1073,6 +1092,9 @@ router.post('/signup:id',(req,res) => {
       patient.age = foundPatient.age;
       patient.num = foundPatient.num;
       patient.bloodgroup = foundPatient.bloodgroup;
+      patient.heridity = foundPatient.heridity;
+      patient.drughistory = foundPatient.drughistory;
+      patient.diabetesduration = foundPatient.diabetesduration;
       patient.address = foundPatient.address;
       patient.cnic = foundPatient.cnic;
       patient.gender = foundPatient.gender;
@@ -1121,7 +1143,7 @@ router.post('/signup:id',(req,res) => {
                           }
                         });
                         req.flash("success", "Patient Sucessfully Created")
-                        res.redirect('back');
+                        res.redirect('/deletereq'+ myid);
                       }
                     })         
                   
@@ -1134,6 +1156,14 @@ router.post('/signup:id',(req,res) => {
     })
 
 })
+
+router.get("/deletereq:id", checkIfAdmin, function(req, res){
+        // SignupRequest.findById(req.params.id, function(err, myreq){
+        //     res.render("deletepage", {myreq: myreq});
+        // })    
+        var myid = req.params.id;
+        res.render("deletepage", {myid: myid})
+});
 
 // router.post("/register",checkIfAdmin, function(req, res){
 //     Doctor.register(new Doctor({username: req.body.username, name: req.body.name, cnic: req.body.cnic, num: req.body.num, age: req.body.age, qualification: req.body.qualification, specialization: req.body.specialization, description: req.body. description, gender: req.body.gender}),

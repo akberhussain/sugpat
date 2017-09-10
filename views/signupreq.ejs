@@ -29,15 +29,13 @@
                                                       <td>
                                                         <h5><a href="/req<%= request.id %>" ><%= request.username %></a></h5>
                                                         <form style = "display: inline;" action = "/signup<%= request.id %>" method = "post">
-                                                          <input type = "submit" value = "Add" class = "btn btn-xs btn-success">
+                                                          <input type = "submit" value = "Add" class = "btn btn-xs btn-success" id = "acceptbutton">
                                                         </form>
                                                         <form style = "display: inline;" action = "/deleteuser<%= request.id %>?_method=delete" method = "post">
-                                                          <input type = "submit" value = "Decline" class = "btn btn-xs btn-danger">
+                                                          <input type = "submit" value = "Decline" class = "btn btn-xs btn-danger" id = "deletebutton">
                                                         </form>
 
                                                       </td>  
-
-
                                                			</tr>
                                                 	<% }); %>
                                                	</tbody>		
@@ -52,5 +50,6 @@
                             <!-- /traffic sources -->
                         </div>
                     </div>
+
 
 <% include ./partials/footer %>

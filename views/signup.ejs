@@ -97,7 +97,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group has-feedback">
-											<input type="email" class="form-control" placeholder="Username" name = "username" required>
+											<input type="email" class="form-control" placeholder="Username Eg: abc@xyz.com" name = "username" required>
 											<div class="form-control-feedback">
 												<!-- <i class="icon-user-plus text-muted"></i> -->
 												<span class = "fa fa-envelope"></span>
@@ -177,6 +177,9 @@
 							                            <option value = "B+" >B+</option>
 							                            <option value = "B-" >B-</option>
 							                            <option value = "O+" >O+</option>
+							                            <option value = "O-" >O-</option>
+							                            <option value = "AB+" >AB+</option>
+							                            <option value = "AB-" >AB-</option>
 													</select>
 													<div class="form-control-feedback">
 														<!-- <i class="icon-mention text-muted"></i> -->
@@ -198,8 +201,44 @@
 											</div>
 
 										</div>
+										<div class = "row">
+											<div class="col-md-6">
+												<div class="form-group has-feedback">
+													<select class = "form-control" name = "drughistory">
+														<option value = "Not Defined" >Drug History</option>
+							                            <option value = "Oral" >Oral</option>
+							                            <option value = "Injectable" >Injectable</option>
+													</select>
+													<div class="form-control-feedback">
+														<!-- <i class="icon-mention text-muted"></i> -->
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group has-feedback">
+													<select class = "form-control" name = "heridity">
+														<option value = "Not Defined" >Heridity</option>
+							                            <option value = "Yes" >Yes</option>
+							                            <option value = "No" >No</option>
+													</select>
+													<div class="form-control-feedback">
+														<!-- <i class="icon-mention text-muted"></i> -->
+													</div>
+												</div>
+											</div>
+
+										</div>
 										<div class="row">
-											<div class="col-md-12">
+											<div class="col-md-6">
+												<div class="form-group has-feedback">
+													<input type="text" class="form-control" placeholder="Diabetes Duration" name = "diabetesduration">
+													<div class="form-control-feedback">
+														<!-- <i class="icon-user-plus text-muted"></i> -->
+<!-- 														<i class="fa fa-globe" aria-hidden="true"></i> -->
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
 												<div class="form-group has-feedback">
 													<input type="text" class="form-control" placeholder="Address" name = "address" required>
 													<div class="form-control-feedback">
@@ -260,7 +299,7 @@
     }
     
     // screensaver();
-    setInterval(screensavers, 2000);
+    setInterval(screensavers, 2500);
 
 </script>
 
